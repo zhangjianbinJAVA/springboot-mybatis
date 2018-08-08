@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--根据需要加入有关配置-->
+    <settings>
+        <!--当返回值为LinkedHashMap时，表中存储的null值并不会存入Map中，因此还要在mybatis配置文件中增加如下配置-->
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+
+</configuration>
