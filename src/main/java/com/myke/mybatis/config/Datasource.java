@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
@@ -66,6 +67,12 @@ public class Datasource {
     public SqlSessionFactory sqlSessionFactory1() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dynamicDS1());
+
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+
+        factoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/mapper/*.xml"));
+        factoryBean.setConfigLocation(resolver.getResource("classpath:/mybatis/mybatis-config.xml"));
+
         return factoryBean.getObject();
     }
 

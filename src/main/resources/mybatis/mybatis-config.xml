@@ -9,5 +9,4 @@
         <!--当返回值为LinkedHashMap时，表中存储的null值并不会存入Map中，因此还要在mybatis配置文件中增加如下配置-->
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
-
 </configuration>

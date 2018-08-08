@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Mapper//声明成mybatis Dao层的Bean，也可以在配置类上使用@MapperScan("*.mapper")注解声明
+@Mapper//声明成mybatis Dao层的Bean，也可以在配置类上使用@MapperScan("*.mybatis.mapper")注解声明
 public interface PersonMapper {
 
     /**
@@ -30,11 +30,20 @@ public interface PersonMapper {
     @Select("select * from information_schema.COLUMNS where TABLE_SCHEMA = (select database()) and TABLE_NAME=#{tableName}")
     List<Map> listTableColumn(String tableName);
 
-    Page<Person> findByPage();
-
-
+    /**
+     * 执行前台传来的sql语句
+     *
+     * @param sql
+     * @return
+     */
     @Select("${value}")
     @ResultType(Map.class)
     List<LinkedHashMap<String, Object>> exeSql(String sql);
 
+    /**
+     * 使用 PersonMapper.xml 中的配置
+     *
+     * @return
+     */
+    Page<Person> findByPage();
 }

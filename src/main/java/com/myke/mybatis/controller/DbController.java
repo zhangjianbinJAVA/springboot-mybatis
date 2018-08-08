@@ -25,6 +25,12 @@ public class DbController {
     @Resource(name = "PersonServiceImpl")
     private PersonService personService;
 
+    /**
+     * 执行前台传来的sql语句
+     *
+     * @param sql
+     * @return
+     */
     @PostMapping("/mysql")
     public List<LinkedHashMap<String, Object>> personList(@RequestBody String sql) {
         return personService.exeSql(sql);
